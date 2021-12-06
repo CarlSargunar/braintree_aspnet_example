@@ -54,13 +54,22 @@ namespace BraintreeASPExample.Controllers
                 return RedirectToAction("New");
             }
 
+            var customer = new CustomerRequest()
+            {
+                FirstName = "Test1",
+                LastName = "LName",
+                Email = "test1@lname.com"
+            };
+
             var request = new TransactionRequest
             {
                 Amount = amount,
                 PaymentMethodNonce = nonce,
+                Customer = customer,
                 Options = new TransactionOptionsRequest
                 {
-                    SubmitForSettlement = true
+                    SubmitForSettlement = true,
+                    StoreInVaultOnSuccess = true,
                 }
             };
 
